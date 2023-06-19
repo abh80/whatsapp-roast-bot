@@ -1,4 +1,4 @@
-# Whatsapp Roat Bot
+# Whatsapp Roast Bot
 A simple whatsapp bot which roasts a user message. Just reply to any message with "roast this" and boom RoastGPT will generate a roast for you ;)
 
 # Installation
