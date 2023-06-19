@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  gpt4free-ts:
+    build:
+      context: gpt-client
+      dockerfile: Dockerfile
+    container_name: gpt4free-ts
+    image: gpt4free-ts:latest
+    ports:
+      - "13000:3000"
+    restart: on-failure
+    volumes:
+      - ./run:/usr/src/app/run
+    cap_add:
+      - "SYS_ADMIN"
+    networks:
+      - gpt
+  
+  bot:
+    build:
+      context: bot
+      dockerfile: Dockerfile
+    image: wa-roast-bot:latest
+    container_name: wa-roast-bot
+    restart: on-failure
+    volumes:
+      - ./.wwebjs_auth:/usr/src/app/.wwebjs_auth
+      - ./.wwebjs_cache:/usr/src/app/.wwebjs_cache
+    environment:
+      - GPT_CLIENT_HOST=http://gpt4free-ts:3000
+    networks:
+      - gpt
+
+networks:
+  gpt:
+    driver: bridge
+    name: gpt-network
