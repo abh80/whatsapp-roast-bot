@@ -1,3 +1,0 @@
-[submodule "gpt-client"]
-	path = gpt-client
-	url = https://github.com/xiangsx/gpt4free-ts
